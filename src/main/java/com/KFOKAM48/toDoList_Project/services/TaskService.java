@@ -3,7 +3,6 @@ package com.KFOKAM48.toDoList_Project.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.KFOKAM48.toDoList_Project.Task;
@@ -11,8 +10,11 @@ import com.KFOKAM48.toDoList_Project.repository.TaskRepository;
 
 @Service
 public class TaskService {
-    @Autowired
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
+
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     public Task createTask(Task task){
         return taskRepository.save(task);
